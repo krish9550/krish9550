@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Profiles {% endblock %}
+{% block style %}   {% endblock %}
+{% block content %}
+  <form class="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align='center' cellpadding='6'>
+      {{form.as_table}}
+      <tr>
+        <td colspan="2" align='center'>
+        <button type="submit" name="b1"> Upload Resume </button>  </td>
+        <tr>
+          <td colspan="2" align='center'>
+        <input type="button" name="reset" value="Reset"/>
+      </td>
+      </tr>
+      <tr>
+        <td colspan="2" align='center'>  {{msg}} </td>
+      </tr>
+    </table>
+  </form>
+    {% if obj %}
+    <table border="1" align='center' cellspacing='0'>
+      <tr>
+        <td colspan="5"> <h2> Successfully uploaded </h2> </td>
+      </tr>
+      <tr>
+        <td>  {{obj.fname}}</td>
+        <td>  {{obj.lname}}</td>
+        <td>  {{obj.tech}}</td>
+        <td>  {{obj.email}}</td>
+        <td>  <img src="{{obj.photo.url}}" alt="image" height="100" width="80"> </td>
+      </tr>
+    </table>
+    {%endif%}
+  {% endblock %}
